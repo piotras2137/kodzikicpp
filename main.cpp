@@ -22,11 +22,11 @@
 ///ustawianie przestrzeni nazw na przestrzen standardową (nie wykorzystacie innych przestrzeni nazw podczas zajec wiec nie ma sensu sie nad tym rozplywac)
 using namespace std;
 
-struct wdp
+struct wdp///struktora wdp zawierajaca 2 zmienne
 {
-	vector <int> liczby;
-	vector <int> wystapienia;
-};
+	vector <int> liczby;///wektor liczb calkowitych  o nazwie liczby 
+	vector <int> wystapienia;///wektor liczb calkowitych o nazwie wystapienia
+};//na koncu wektora musi byc srednik
 
 void wypisz(vector <int> tab)///funkcja wypisujaca tablice przekazana w argumencie
 {
@@ -93,67 +93,68 @@ vector<int> unikalnosc(vector <int> tab)///funkcja unikalnosc zbierajaca unikaln
 	}
 	return wynik;///zwrocenie wektora wynik 
 }
-vector <int> wybierz(vector <int> tab, int dzielnik, int reszta = 0)
+vector <int> wybierz(vector <int> tab, int dzielnik, int reszta = 0)///funkcja sprawdzajaca czy liczby z vectora dziela sie przed dana liczbe z dana reszta
 {
 	vector <int> wynik;
 	for (int i = 0; i < tab.size(); i++)///penta for przyjmujaca wartosci od 0 do rozmiaru tablicy 
-		if (tab[i] % dzielnik == reszta)
+		if (tab[i] % dzielnik == reszta)///czy liczba z vectora dzieli sie przez dana liczbe z dana reszta
 		{
-			wynik.push_back(tab[i]);
+			wynik.push_back(tab[i]);///liczby z wektora do wyniku
 		}
-	return wynik;
+	return wynik;///zwrocenie wyniku
 }
 
-int index(vector <int> tab, int elem)
+int index(vector <int> tab, int elem)///funkcja sprawdzajaca czy w danym wektorze jest element o wartosci zmiennej elem 
 {
 	int wynik;
 	for (int i = 0; i < tab.size(); i++)///penta for przyjmujaca wartosci od 0 do rozmiaru tablicy 
-		if (tab[i] == elem)
+		if (tab[i] == elem)///sprawdzenie czy element od tablicy o indexie i jest rowny zmiennej elem 
 		{
-	 		return i;
+	 		return i; //zwrocenie jego indexu
 	     }
-	return -1;
+	return -1;///zwrocenie -1, takiego indexu nie ma nic
 
 }
-wdp czestosc(vector <int> tab)
+wdp czestosc(vector <int> tab)///zmienna typu wdp (struktury z gory) zbierajaca wystapienia liczb z wektora w danym wektorze
 {
-	wdp wynik;
-	for (int i = 0; i < tab.size(); i++)///penta for przyjmujaca wartosci od 0 do rozmiaru tablicy 
-		if (index(wynik.liczby,tab[i] == -1))
+	wdp wynik;///zmeinna na wynik0
+	for (int i = 0; i < tab.size(); i++)///pentla for przyjmujaca wartosci od 0 do rozmiaru wketora tab 
+		if (index(wynik.liczby,tab[i] == -1))///sprawdzenie czy w wektorze liczby ze zmiennej wynik nie ma liczby z tab[i]
 		{
-			wynik.liczby.push_back(tab[i]);
-			wynik.wystapienia.push_back(1);
+			wynik.liczby.push_back(tab[i]);///dodanie tab[i] do wektora liczby w wyniku
+			wynik.wystapienia.push_back(1);///dodanie 1 do wektora
 		}
 		else
 		{
-			wynik.wystapienia[index(wynik.liczby, tab[i])]++;
+			wynik.wystapienia[index(wynik.liczby, tab[i])]++;///dodanie powtorzenia, se ogarniesz to o co chodzi 
 		}
-	return wynik;
+	return wynik;//zwrocenie wyniku
 }
 
-vector <int> generuj(int n, int min, int max)
+vector <int> generuj(int n, int min, int max)///funkcja generujaca nowy vector wielkosci n z wartosciami miedzy min i max
 {
-	vector <int> wynik;
-	int liczby;
-	for (int i = 0; i < n; i++)
+	vector <int> wynik;///vector na wynik
+	int liczby;///zmienna na losowanie
+	for (int i = 0; i < n; i++)///pentla na dlugosc docelowego vectora
 	{
-		liczby = rand() % (max - min + 1) + min;
-		wynik.push_back(liczby);
+		liczby = rand() % (max - min + 1) + min;///losowanie liczby miedzy min i max
+		wynik.push_back(liczby);///wsadzenie liczby do vectora wynik
 	}
 	return wynik;
 }
 
-vector <int> generuj(int n, int max = 50)
+vector <int> generuj(int n, int max = 50)///to samo tylko ze od zera do max
 {
-	return generuj(n, 0, max);
+	return generuj(n, 0, max);///tutaj poprostu uzywa sie funkcji z gory
 }
 
-void wypisz(wdp zm)///fukcja wypisujaca 
+void wypisz(wdp zm)///fukcja wypisujaca strokture wdp(tą z gory)
 {
+	///po prostu wywolanie 2 razy funkcji wypisz na wektory ze struktury zm
 	wypisz(zm.liczby);
 	wypisz(zm.wystapienia);
 }
-int sumaD(vector <int> tab, int n)
+int sumaD(vector <int> tab, int n)///nie wiem co to ma byc i do czego to wiec potem to dodam 
 {
 	int wynik = 0;
 	for (int i = 0; i < tab.size(); i++)
@@ -162,7 +163,7 @@ int sumaD(vector <int> tab, int n)
 	}
 	return wynik;
 }
-int zamieszkajW(vector <int> tab)
+int zamieszkajW(vector <int> tab)///to tez, potem dodam komentarz do tego 
 {
 	int wynik = tab[0];
 	int najOdl = sumaD(tab, tab[0]);
@@ -183,10 +184,10 @@ int main()
 
 	/////wywolania funcji i zmienne pomocnicze
 	srand(time(NULL));////ustawienie ziarna generatora liczb pseudolosowych, bez tej linijki losowanie zawsze zwroci to samo 
-	vector <int> p = { 1,2,3,4,5,6,7,8};
-	vector <int> k = {2,6,3};
-	wypisz(p);
-	cout << endl;
+	vector <int> p = { 1,2,3,4,5,6,7,8};///vector intow o nazwie p
+	vector <int> k = {2,6,3};///vector intow o nazwie k
+	wypisz(p);///wypisanie vectora p 
+	cout << endl;///zrobiienie nowej lini na konsoli 
 	cout << minimum(p);
 	cout << endl;
 	cout << czynalezy(p, 10);
